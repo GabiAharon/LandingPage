@@ -16,7 +16,7 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      background: linear-gradient(45deg, #3498db, #8e44ad, #2ecc71);
+      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       font-family: 'Assistant', sans-serif;
@@ -189,7 +189,7 @@
     .category {
       font-size: 16px;
       text-align: center;
-      background: linear-gradient(45deg, #3498db, #8e44ad, #2ecc71);
+      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
       background-size: 200% 200%;
       color: white;
       padding: 8px 50px;
@@ -338,6 +338,64 @@
         margin: 0.5rem 0;
       }
     }
+
+    @media (max-width: 1080px) and (min-height: 1920px) {
+      body {
+        flex-direction: column;
+      }
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .scene {
+        width: 80vw;
+        height: 60vh;
+        margin-left: 0;
+        margin-bottom: 20px;
+      }
+
+      .info-section {
+        padding-left: 0;
+        text-align: center;
+        width: 90%;
+      }
+
+      .social-links {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 20px;
+      }
+
+      #contact-form {
+        position: static;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      nav {
+        padding: 0.5rem 1rem;
+      }
+
+      nav ul {
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
     /* CSS מסתיים כאן */
   </style>
 </head>
@@ -345,9 +403,8 @@
   <nav>
     <ul>
       <li><a href="index.html">דף הבית</a></li>
-      <li><a href="#">תיק עבודות</a></li>
-     <li><a href="https://gabiaharon.github.io/LandingPage/lectures.html">הרצאות</a></li>
-
+      <li><a href="https://gabiaharon.github.io/LandingPage/lectures.html">הרצאות</a></li>
+      <li><a href="#portfolio">תיק עבודות</a></li>
     </ul>
     <a href="index.html" class="logo">
       <img src="https://i.postimg.cc/1z4wp5xG/image.png" alt="גבי אהרון לוגו">
@@ -390,6 +447,176 @@
       </div>
     </div>
   </div>
+  <div id="contact-form" class="minimized">
+    <div id="contact-form-header">
+      <h3>צור קשר</h3>
+      <button id="toggle-form">+</button>
+    </div>
+    <form id="contactForm" action="https://formspree.io/f/movazzwj" method="POST">
+      <input type="text" name="name" id="name" placeholder="שם מלא" required>
+      <input type="email" name="email" id="email" placeholder="כתובת אימייל" required>
+      <input type="tel" name="phone" id="phone" placeholder="מספר נייד" required>
+      <select name="reason" id="reason" required>
+        <option value="" disabled selected>סיבת הפנייה</option>
+        <option value="עמידה מול קהל">עמידה מול קהל</option>
+        <option value="בינה מלאכותית">בינה מלאכותית</option>
+        <option value="עיצוב">עיצוב</option>
+      </select>
+      <textarea name="message" id="message" placeholder="הודעה" required></textarea>
+      <button type="submit">שלח</button>
+    </form>
+  </div>
+  <style>
+    #contact-form {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 280px;
+      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    #contact-form.minimized {
+      width: 130px;
+      height: auto;
+      padding: 10px;
+    }
+
+    #contact-form.minimized form {
+      display: none;
+    }
+
+    #contact-form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      height: 40px;
+    }
+
+    #contact-form.minimized #contact-form-header {
+      margin-bottom: 0;
+    }
+
+    #contact-form h3 {
+      margin: 0;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      font-size: 18px;
+      line-height: 40px;
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    #toggle-form {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      margin-left: 10px;
+    }
+
+    #contact-form input,
+    #contact-form textarea,
+    #contact-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 14px;
+      font-family: 'Assistant', sans-serif;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+    }
+
+    #contact-form input,
+    #contact-form select {
+      height: 36px;
+    }
+
+    #contact-form textarea {
+      height: 72px;
+      resize: none;
+    }
+
+    #contact-form input::placeholder,
+    #contact-form textarea::placeholder,
+    #contact-form select {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    #contact-form button[type="submit"] {
+      width: 100%;
+      padding: 8px;
+      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    #contact-form button[type="submit"]:hover {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      #contact-form {
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+
+    #contact-form select {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      appearance: none;
+      padding-right: 20px;
+      text-align: right;
+      direction: rtl;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position: left 8px center;
+    }
+
+    #contact-form select::-ms-expand {
+      display: none;
+    }
+
+    #contact-form select option {
+      background-color: #3498db;
+      color: white;
+      text-align: right;
+      direction: rtl;
+    }
+
+    #contact-form select::after {
+      content: none;
+    }
+  </style>
   <script>
     const scene = document.getElementById('scene');
     const phone = document.getElementById('phone');
@@ -418,20 +645,140 @@
           face.classList.remove('active');
         }
       });
+
+      const contactFormHeader = document.getElementById('contact-form-header');
+      contactFormHeader.style.fontWeight = 'normal';
+      contactFormHeader.style.textAlign = 'center';
+      contactFormHeader.style.lineHeight = '30px';
+
+      const toggleForm = document.getElementById('toggle-form');
+      toggleForm.style.lineHeight = '30px';
+      toggleForm.style.verticalAlign = 'middle';
     }
 
-    document.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
+    function handleTouchMove(event) {
+      const touch = event.touches[0];
+      const { clientX, clientY } = touch;
       const { innerWidth, innerHeight } = window;
       
       const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
       const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
       
       updatePhoneRotation(rotateX, rotateY);
+    }
+
+    if ('ontouchstart' in window) {
+      document.addEventListener('touchmove', handleTouchMove);
+    } else {
+      document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
+        const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
+        
+        updatePhoneRotation(rotateX, rotateY);
+      });
+    }
+
+    updateActiveFace();
+
+    const contactFormHeader = document.getElementById('contact-form-header');
+    const toggleForm = document.getElementById('toggle-form');
+    const contactForm = document.getElementById('contact-form');
+
+    function toggleContactForm() {
+      contactForm.classList.toggle('minimized');
+      toggleForm.textContent = contactForm.classList.contains('minimized') ? '+' : '-';
+      updateContactFormStyle();
+    }
+
+    contactFormHeader.addEventListener('click', function(event) {
+      if (event.target !== toggleForm) {
+        toggleContactForm();
+      }
     });
 
-    // הפעלת הפנים הראשונה כפעילה
-    updateActiveFace();
+    toggleForm.addEventListener('click', function(event) {
+      event.stopPropagation();
+      toggleContactForm();
+    });
+
+    function updateContactFormStyle() {
+      const contactForm = document.getElementById('contact-form');
+      const contactFormHeader = document.getElementById('contact-form-header');
+      const toggleForm = document.getElementById('toggle-form');
+
+      if (contactForm.classList.contains('minimized')) {
+        contactFormHeader.style.justifyContent = 'space-between';
+        toggleForm.style.position = 'static';
+      } else {
+        contactFormHeader.style.justifyContent = 'space-between';
+        toggleForm.style.position = 'static';
+      }
+    }
+
+    updateContactFormStyle();
+
+    const contactFormElement = document.getElementById('contactForm');
+    const thankYouMessage = document.createElement('div');
+    thankYouMessage.id = 'thankYouMessage';
+    thankYouMessage.textContent = 'תודה רבה על פנייתך, ניצור קשר בהקדם!';
+
+    contactFormElement.addEventListener('submit', handleSubmit);
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new FormData(event.target),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          showThankYouMessage();
+          setTimeout(() => {
+            resetForm();
+          }, 5000);
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              showErrors(data.errors);
+            } else {
+              showErrorMessage('שגיאה בשליחת הטופס');
+            }
+          });
+        }
+      })
+      .catch(error => {
+        showErrorMessage('שגיאה בשליחת הטופס');
+      });
+    }
+
+    function showThankYouMessage() {
+      contactFormElement.style.display = 'none';
+      contactFormElement.parentNode.insertBefore(thankYouMessage, contactFormElement);
+    }
+
+    function resetForm() {
+      thankYouMessage.remove();
+      contactFormElement.style.display = 'block';
+      contactFormElement.reset();
+    }
+
+    function showErrorMessage(message) {
+      alert(message);
+    }
+
+    function showErrors(errors) {
+      let errorMessage = 'שגיאות בטופס:\n';
+      errors.forEach(error => {
+        errorMessage += `- ${error.field}: ${error.message}\n`;
+      });
+      alert(errorMessage);
+    }
   </script>
 </body>
 </html>
