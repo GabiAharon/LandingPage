@@ -309,42 +309,8 @@
     }
 
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        margin-top: 0;
-      }
-
-      .scene {
-        margin-left: 0;
-        margin-bottom: 20px;
-      }
-
-      .info-section {
-        padding-left: 0;
-      }
-
-      .social-links {
-        position: static;
-        transform: none;
-        margin-top: 20px;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      nav ul li {
-        margin: 0.5rem 0;
-      }
-    }
-
-    @media (max-width: 1080px) and (min-height: 1920px) {
       body {
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 70px; /* מרווח מהחלק העליון */
-        min-height: 110vh; /* מאריך את הדף */
+        padding-top: 60px;
       }
 
       nav {
@@ -357,7 +323,7 @@
       }
 
       nav ul {
-        flex-direction: row;
+        flex-direction: row !important;
         justify-content: space-around;
         width: 100%;
       }
@@ -367,12 +333,12 @@
       }
 
       nav ul li a {
-        font-size: 14px; /* הקטנת גודל הפונט */
+        font-size: 14px;
         padding: 5px;
       }
 
       .logo {
-        display: none; /* מסתיר את הלוגו במסך קטן */
+        display: none;
       }
 
       .container {
@@ -386,17 +352,12 @@
       .scene {
         width: 80%;
         height: auto;
-        aspect-ratio: 1 / 1.5; /* יוצר יחס גובה-רוחב קבוע */
+        aspect-ratio: 1 / 1.5;
         margin-bottom: 20px;
       }
 
       .phone {
-        transform: none;
-      }
-
-      .profile-image {
-        width: 80px;
-        height: 80px;
+        transform: none !important;
       }
 
       .name {
@@ -410,27 +371,18 @@
         margin-bottom: 10px;
       }
 
-      .categories {
-        margin-top: 10px;
-      }
-
       .category {
         font-size: 14px;
         padding: 6px 20px;
         margin-bottom: 8px;
-        width: 60%; /* הקטנת הרוחב של הקטגוריות */
+        width: 60%;
       }
 
       .social-links {
         position: static;
-        transform: none;
+        transform: none !important;
         margin-top: 15px;
         width: 100%;
-      }
-
-      .social-link {
-        width: 40px;
-        height: 40px;
       }
 
       .info-section {
@@ -450,7 +402,9 @@
       }
 
       #contact-form {
-        bottom: 10px;
+        position: static;
+        width: 90%;
+        margin: 20px auto;
       }
     }
 
