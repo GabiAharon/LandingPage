@@ -78,6 +78,7 @@
       font-weight: bold;
       position: relative;
       padding: 0.5rem 0;
+      font-size: 1.1rem; /* הגדלת גודל הפונט */
     }
 
     nav ul li a::after {
@@ -318,6 +319,26 @@
         background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
         background-size: 400% 400%;
         animation: gradientBG 15s ease infinite;
+        padding: 10px;
+      }
+
+      nav ul {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+      }
+
+      nav ul li {
+        margin: 0 5px;
+      }
+
+      nav ul li a {
+        font-size: 14px;
+        padding: 5px;
+      }
+
+      .logo {
+        display: none;
       }
 
       .container {
@@ -366,6 +387,9 @@
       <li><a href="https://gabiaharon.github.io/LandingPage/lectures.html">הרצאות</a></li>
       <li><a href="#portfolio">תיק עבודות</a></li>
     </ul>
+    <a href="index.html" class="logo">
+      <img src="https://i.postimg.cc/1z4wp5xG/image.png" alt="גבי אהרון לוגו">
+    </a>
   </nav>
   <div class="main-content">
     <div class="container">
