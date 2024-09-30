@@ -204,12 +204,21 @@ document.addEventListener('click', (event) => {
 function setupTestimonials() {
   const slider = document.querySelector('.testimonial-slider');
   const testimonials = document.querySelectorAll('.testimonial');
-  
-  // שכפול חוות הדעת כדי ליצור אפקט אינסופי
+  let currentIndex = 0;
+
+  // שכפול חוות הדעת
   testimonials.forEach(testimonial => {
     const clone = testimonial.cloneNode(true);
     slider.appendChild(clone);
   });
+
+  function slideTestimonials() {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    slider.style.transform = `translateX(${-currentIndex * 33.33}%)`;
+  }
+
+  // החלפת חוות דעת כל 5 שניות
+  setInterval(slideTestimonials, 5000);
 }
 
 // הפעלת הפונקציה כשהדף נטען
