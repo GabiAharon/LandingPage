@@ -564,9 +564,27 @@ nav ul li a i {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 60px;
-    width: 100%;
-    overflow-x: hidden;
+    padding-top: 0;
+  }
+
+  nav {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  .hero {
+    margin-top: 0;
   }
 
   .container {
@@ -575,61 +593,27 @@ nav ul li a i {
     box-sizing: border-box;
   }
 
-  .main-content {
-    padding: 20px 0;
+  .scene {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.5;
   }
 
-  /* התאמת התפריט */
-  nav {
-    padding: 10px;
+  .info-section {
+    padding: 20px 10px;
   }
 
-  nav ul {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 5px;
-    white-space: nowrap;
+  .info-section h1 {
+    font-size: 1.8rem;
   }
 
-  nav ul li {
-    flex-shrink: 0;
-    margin: 0 10px;
+  .info-section h2 {
+    font-size: 1.2rem;
   }
 
-  /* התאמת חוות דעת */
-  .testimonials {
-    padding: 20px 0;
-    overflow: hidden;
+  .info-section p {
+    font-size: 1rem;
   }
-
-  .testimonial-slider {
-    display: flex;
-    width: 300%; /* שלוש חוות דעת ברוחב */
-    animation: slideTestimonials 30s linear infinite;
-  }
-
-  .testimonial {
-    flex: 1;
-    min-width: 33.33%; /* כל חוות דעת תופסת שליש מהרוחב */
-  }
-
-  @keyframes slideTestimonials {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-66.66%); /* תזוזה של שתי חוות דעת */
-    }
-  }
-
-  .testimonial-slider:hover {
-    animation-play-state: paused;
-  }
-
-  /* ... (שאר הקוד הקיים) ... */
 }
 
 /* טופס יצירת קשר */
