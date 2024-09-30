@@ -533,17 +533,21 @@ nav ul li a i {
 .testimonial-slider {
   display: flex;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  position: relative;
 }
 
 .testimonial {
-  flex: 0 0 auto;
-  width: 300px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  box-sizing: border-box;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial.active {
+  opacity: 1;
 }
 
 .testimonial p {
@@ -556,6 +560,29 @@ nav ul li a i {
   margin-top: 0.5rem;
   font-size: 1rem;
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .testimonial-slider {
+    overflow-x: hidden;
+  }
+
+  .testimonial {
+    animation: slideTestimonials 20s linear infinite;
+  }
+
+  @keyframes slideTestimonials {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-300%);
+    }
+  }
+
+  .testimonial-slider:hover .testimonial {
+    animation-play-state: paused;
+  }
 }
 
 /* טופס יצירת קשר */
@@ -1121,6 +1148,40 @@ nav ul li a i {
 
   #contact-form.minimized {
     width: 100%;
+  }
+
+  /* התאמת התפריט */
+  nav {
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 5px;
+  }
+
+  /* התאמת Hero */
+  .hero {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* התאמת כפתורי CTA */
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 }
 
