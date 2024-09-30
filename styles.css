@@ -1034,3 +1034,92 @@ nav ul li a i {
   z-index: 1000;
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8);
 }
+
+/* התאמות למובייל */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+
+  nav {
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hero {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .scene {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 2;
+    margin-bottom: 20px;
+  }
+
+  .info-section {
+    padding-left: 0;
+  }
+
+  .info-section h1 {
+    font-size: 2rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .testimonial-slider {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #contact-form {
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px 10px 0 0;
+  }
+
+  #contact-form.minimized {
+    width: 100%;
+  }
+}
