@@ -200,3 +200,33 @@ document.addEventListener('click', (event) => {
     });
   }
 });
+
+function setupTestimonials() {
+  const slider = document.querySelector('.testimonial-slider');
+  const testimonials = document.querySelectorAll('.testimonial');
+  
+  function activateCurrentTestimonial() {
+    const scrollLeft = slider.scrollLeft;
+    const sliderWidth = slider.offsetWidth;
+    
+    testimonials.forEach((testimonial, index) => {
+      const testimonialLeft = testimonial.offsetLeft - slider.offsetLeft;
+      const testimonialWidth = testimonial.offsetWidth;
+      
+      if (scrollLeft >= testimonialLeft - sliderWidth / 2 &&
+          scrollLeft < testimonialLeft + testimonialWidth - sliderWidth / 2) {
+        testimonial.classList.add('active');
+      } else {
+        testimonial.classList.remove('active');
+      }
+    });
+  }
+
+  slider.addEventListener('scroll', activateCurrentTestimonial);
+  
+  // Initial activation
+  activateCurrentTestimonial();
+}
+
+// Run the setup when the DOM is loaded
+document.addEventListener('DOMContentLoaded', setupTestimonials);
