@@ -2,437 +2,136 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>תעודת זהות דיגיטלית</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>גבי אהרון - מנהל, מרצה, מהנדס מכונות ואיש של אנשים</title>
   <!-- קישור לגופנים -->
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
   <!-- קישור ל-Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* CSS מתחיל כאן */
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      font-family: 'Assistant', sans-serif;
-      perspective: 1500px;
-      overflow-x: hidden;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 0.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      border-radius: 0 0 20px 20px;
-    }
-
-    .logo {
-      width: 80px;
-      height: 80px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.8);
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-    }
-
-    nav ul li {
-      margin: 0 1rem;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      position: relative;
-      padding: 0.5rem 0;
-      font-size: 1.1rem; /* הגדלת גודל הפונט */
-    }
-
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #2ecc71;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    nav ul li a:hover::after {
-      transform: scaleX(1);
-    }
-
-    .main-content {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 80px;
-    }
-
-    .container {
-      display: flex;
-      width: 90%;
-      max-width: 1200px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 40px rgba(0,0,0,0.3);
-      padding: 40px;
-    }
-
-    .scene {
-      width: 300px;
-      height: 600px;
-      perspective: 1500px;
-      position: relative;
-      margin-left: 40px;
-    }
-
-    .phone {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .phone-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 30px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      color: white;
-      overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .phone-face.active {
-      opacity: 1;
-    }
-
-    .front { transform: rotateY(0deg); }
-    .back { transform: rotateY(120deg); }
-    .side { transform: rotateY(240deg); }
-
-    .profile-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 5px;
-      border: 3px solid white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      margin-top: -20px; /* הוספת margin-top שלילי */
-    }
-
-    .name {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      text-align: center;
-      color: white;
-      margin-top: -10px; /* הוספת margin-top שלילי */
-    }
-
-    .categories {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    .category {
-      font-size: 16px;
-      text-align: center;
-      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-      background-size: 200% 200%;
-      color: white;
-      padding: 8px 50px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-      width: 80%;
-      transition: all 0.3s ease;
-      animation: gradientBG 15s ease infinite;
-    }
-
-    .category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    .info-section {
-      flex: 1;
-      padding-left: 40px;
-      color: white;
-    }
-
-    .info-section h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .info-section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      opacity: 0.8;
-      margin-top: -20px; /* הוספת מרווח עליון */
-    }
-
-    .info-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateZ(20px);
-      display: flex;
-      justify-content: center;
-      width: 250px;
-      z-index: 10;
-    }
-
-    .social-link {
-      width: 50px;
-      height: 50px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      transition: all 0.5s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      margin: 0 8px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .social-link i {
-      font-size: 24px;
-      color: #333;
-      transition: all 0.5s ease;
-    }
-
-    .social-link:hover {
-      transform: translateZ(130px) scale(1.2);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateZ(100px) translateY(0); }
-      50% { transform: translateZ(100px) translateY(-10px); }
-    }
-
-    .social-link:nth-child(1) { animation-delay: 0s; }
-    .social-link:nth-child(2) { animation-delay: 0.5s; }
-    .social-link:nth-child(3) { animation-delay: 1s; }
-
-    .social-link.linkedin {
-      background-color: #0077b5; /* צבע רקע ללינקדאין */
-    }
-
-    .social-link.facebook {
-      background-color: #3b5998; /* צבע רקע לפייסבוק */
-    }
-
-    .social-link.instagram {
-      background-color: #e4405f; /* צבע רקע לאינסטגרם */
-    }
-
-    .social-link.linkedin:hover {
-      background-color: #005582; /* צבע רקע ללינקדאין במצב ריחוף */
-    }
-
-    .social-link.facebook:hover {
-      background-color: #2d4373; /* צבע רקע לפייסבוק במצב ריחוף */
-    }
-
-    .social-link.instagram:hover {
-      background-color: #c13584; /* צבע רקע לאינסטגרם במצב ריחוף */
-    }
-
-    .phone-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start; /* שינוי מ-center ל-flex-start */
-      height: 100%; /* גובה מלא */
-      padding-top: 40px; /* הוספת padding-top */
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 60px;
-        padding-bottom: 80px; /* מרווח בתחתית הדף */
-      }
-
-      nav {
-        background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        padding: 10px;
-      }
-
-      nav ul {
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-      }
-
-      nav ul li {
-        margin: 0 5px;
-      }
-
-      nav ul li a {
-        font-size: 14px;
-        padding: 5px;
-      }
-
-      .logo {
-        display: none;
-      }
-
-      .container {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        width: 95%;
-        margin: 0 auto; /* מסיר את המרווח העליון */
-      }
-
-      .scene {
-        width: 90%;
-        height: auto;
-        aspect-ratio: 1 / 1.5;
-        margin: 0 auto 20px; /* מסיר את המרווח העליון */
-      }
-
-      .info-section {
-        padding: 0 10px;
-        margin-bottom: 80px; /* מרווח מתחת לטקסט */
-      }
-
-      #contact-form {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        margin: 0;
-        border-radius: 10px 10px 0 0;
-      }
-
-      #contact-form.minimized {
-        width: 100%;
-        height: 50px;
-      }
-    }
-
-    /* CSS מסתיים כאן */
-  </style>
+  <!-- קישור לקובץ ה-CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- פאביקון -->
+  <link rel="icon" type="image/png" href="path_to_favicon.png">
 </head>
 <body>
+  <!-- תפריט ניווט -->
   <nav>
     <ul>
-      <li><a href="index.html">דף הבית</a></li>
-      <li><a href="https://gabiaharon.github.io/LandingPage/lectures.html">הרצאות</a></li>
-      <li><a href="#portfolio">תיק עבודות</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> דף הבית</a></li>
+      <li><a href="https://gabiaharon.github.io/LandingPage/lectures.html"><i class="fas fa-chalkboard-teacher"></i> הרצאות</a></li>
+      <li><a href="#portfolio"><i class="fas fa-briefcase"></i> תיק עבודות</a></li>
     </ul>
-    <a href="index.html" class="logo">
+    <a href="index.html" class="logo" aria-label="חזרה לדף הבית">
       <img src="https://i.postimg.cc/1z4wp5xG/image.png" alt="גבי אהרון לוגו">
     </a>
   </nav>
+  
+  <!-- תמונת Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>גבי אהרון - מנהל, מרצה, מהנדס מכונות ואיש של אנשים</h1>
+      <p>למדו לשלוט בשפת הגוף שלכם ולהשאיר רושם חזק בכל מפגש.</p>
+      <a href="#contact-form" class="cta-button">צור קשר</a>
+    </div>
+  </section>
+  
+  <!-- תוכן ראשי -->
   <div class="main-content">
     <div class="container">
       <div class="scene" id="scene">
-        <div class="phone" id="phone">
+        <div class="phone" id="phone" aria-label="לחץ כדי לסובב את הטלפון">
+          <!-- מחוון חיווי ללחיצה -->
+          <div class="click-indicator">
+            <i class="fas fa-undo-alt"></i>
+          </div>
+          <!-- צד קדמי של הטלפון -->
           <div class="phone-face front active">
             <div class="phone-content">
               <img src="https://i.postimg.cc/Y2dXfKbh/Untitled-design-1.png" alt="תמונת פרופיל" class="profile-image">
               <h1 class="name">גבי אהרון</h1>
-              <h2 class="job-title">מנהל ומרצה</h2>
               <div class="categories">
-                <span class="category">עמידה מול קהל</span>
-                <span class="category">בינה מלאכותית</span>
-                <span class="category">עיצוב</span>
+                <span class="category">
+                  <i class="fas fa-microphone-alt"></i> עמידה מול קהל
+                </span>
+                <span class="category">
+                  <i class="fas fa-robot"></i> בינה מלאכותית
+                </span>
+                <span class="category">
+                  <i class="fas fa-paint-brush"></i> עיצוב
+                </span>
               </div>
               <div class="social-links">
-                <a href="https://www.linkedin.com/in/gabi-aharon/" target="_blank" rel="noopener noreferrer" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.facebook.com/GabiBon" target="_blank" rel="noopener noreferrer" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/gabiaharon/" target="_blank" rel="noopener noreferrer" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/gabi-aharon/" target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/GabiBon" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/gabiaharon/" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
               </div>
             </div>
           </div>
+          <!-- צד אחורי של הטלפון -->
           <div class="phone-face back">
-            <!-- תוכן נוסף (אם יש) -->
-          </div>
-          <div class="phone-face side">
-            <!-- תוכן נוסף (אם יש) -->
+            <div class="phone-content">
+              <div class="back-images">
+                <img src="https://i.ibb.co/KF2CCK5/20240929-145905.jpg" alt="תמונה זמנית 1" class="back-image">
+                <img src="https://i.ibb.co/kc0hyZk/20240929-145913.jpg" alt="תמונה זמנית 2" class="back-image">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="info-section">
         <h1>גבי אהרון</h1>
-        <h2 class="job-title">מנהל ומרצה לעמידה מול קהל</h2>
-        <p>ברוכים הבאים לדף הנחיתה שלי! אני מפתח תוכנה מנוסה עם התמחות ב-JavaScript, React ו-Node.js. מתמחה בבניית אפליקציות ווב מודרניות ומשתמש בטכנולוגיות החדשניות ביותר.</p>
-        <p>בנוסף לפיתוח, אני מעביר הרצאות בנושאי תכנות ופיתוח ווב. תוכלו למצוא מידע נוסף על ההרצאות שלי בלשונית 'הרצאות'.</p>
-        <p>אשמח לשתף פעולה בפרויקטים מעניינים ומאתגרים. אל תהססו ליצור קשר!</p>
+        <h2 class="job-title">מנהל, מרצה, מהנדס מכונות ואיש של אנשים.</h2>
+        <p>איזה כיף שאתם כאן!</p>
+        <p>נעים מאוד, בשנים האחרונות אני עוסק בהדרכה והנחיה, עם דגש על עמידה מול קהל ושימוש נכון בשפת הגוף כדי להעביר מסר חד, ברור ומרתק. אני מאמין שהמילים שלנו הן חשובות, אבל מה שמשאיר חותם אמיתי הוא איך אנחנו אומרים אותן – שפת הגוף שלנו.</p>
+        <p>בין אם אתם בני נוער, יזמים, מורים או אנשי מקצוע, הרצאותיי נועדו לעזור לכם לשדר ביטחון, להקרין נוכחות ולהשתמש בכלי העוצמתי ביותר שיש לנו – הגוף שלנו – כדי ליצור חיבור אמיתי עם הקהל. ככל שהעולם משתנה והיכולת לתקשר באופן אישי או מקצועי הופכת לקריטית יותר, כך גם החשיבות של הבנה ושליטה בשפת הגוף הולכת וגדלה.</p>
+        <p>כמי שעוסק גם בעיצוב ובינה מלאכותית, אני מביא איתי גישה רעננה ומתקדמת לעולם ההרצאות וההדרכה. אני מזמין אתכם להצטרף אליי למסע שבו תלמדו לשלוט בשפת הגוף שלכם, להופיע בצורה משכנעת ומקצועית, ולהותיר רושם חזק ומשמעותי בכל מפגש מול קהל.</p>
+        <!-- כפתור CTA נוסף בתחתית מקטע מידע -->
+        <a href="#contact-form" class="cta-button">הרשם להרצאה</a>
       </div>
     </div>
   </div>
+
+  <!-- אזור חוות דעת -->
+  <div class="testimonials">
+    <h2>חוות דעת</h2>
+    <div class="testimonial-slider" id="testimonial-slider">
+      <div class="testimonial">
+        <p>"גבי הוא מרצה מדהים! ההרצאות שלו מרתקות ומעשירות."</p>
+        <h3>- יוסי כהן</h3>
+      </div>
+      <div class="testimonial">
+        <p>"העבודה עם גבי הייתה חוויה מקצועית ומהנה. ממליץ בחום!"</p>
+        <h3>- שרית לוי</h3>
+      </div>
+      <div class="testimonial">
+        <p>"גבי עזר לנו להטמיע פתרונות בינה מלאכותית בארגון. תוצאה מעל הציפיות!"</p>
+        <h3>- אבי ישראלי</h3>
+      </div>
+      <div class="testimonial">
+        <p>"הידע והמקצועיות של גבי בתחום העמידה מול קהל הם ברמה גבוהה."</p>
+        <h3>- דנה רביב</h3>
+      </div>
+      <div class="testimonial">
+        <p>"גבי הוא מנטור מעולה. תמיד מוכן לעזור ולשתף מהניסיון שלו."</p>
+        <h3>- מיכאל ברק</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- אזור "דברו איתי" בתוך footer -->
+  <div class="footer">
+    <div class="contact-info">
+      <h2>דברו איתי</h2>
+      <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Gabiaharon@gmail.com">Gabiaharon@gmail.com</a></p>
+      <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:+972546436659">054-6436659</a></p>
+    </div>
+  </div>
+
+  <!-- טופס יצירת קשר -->
   <div id="contact-form" class="minimized">
     <div id="contact-form-header">
       <h3>צור קשר</h3>
-      <button id="toggle-form">+</button>
+      <button id="toggle-form" aria-label="פתח טופס יצירת קשר">+</button>
     </div>
     <form id="contactForm" action="https://formspree.io/f/movazzwj" method="POST">
       <input type="text" name="name" id="name" placeholder="שם מלא" required>
@@ -448,414 +147,25 @@
       <button type="submit">שלח</button>
     </form>
   </div>
-  <style>
-    #contact-form {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 280px;
-      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      color: white;
-      transition: all 0.3s ease;
-    }
 
-    #contact-form.minimized {
-      width: 130px;
-      height: auto;
-      padding: 10px;
-    }
+  <!-- צ'אט חי חינמי (Tawk.to) -->
+  <!--Start of Tawk.to Script-->
+  <div class="tawk-chat">
+    <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement('script'),s0=document.getElementsByTagName('script')[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/{your_property_id}/default';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+    </script>
+  </div>
+  <!--End of Tawk.to Script-->
 
-    #contact-form.minimized form {
-      display: none;
-    }
-
-    #contact-form-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      height: 40px;
-    }
-
-    #contact-form.minimized #contact-form-header {
-      margin-bottom: 0;
-    }
-
-    #contact-form h3 {
-      margin: 0;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      font-size: 18px;
-      line-height: 40px;
-      flex-grow: 1;
-      text-align: right;
-    }
-
-    #toggle-form {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      margin-left: 10px;
-    }
-
-    #contact-form input,
-    #contact-form textarea,
-    #contact-form select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
-      font-size: 14px;
-      font-family: 'Assistant', sans-serif;
-      box-sizing: border-box;
-      direction: rtl;
-      text-align: right;
-    }
-
-    #contact-form input,
-    #contact-form select {
-      height: 36px;
-    }
-
-    #contact-form textarea {
-      height: 72px;
-      resize: none;
-    }
-
-    #contact-form input::placeholder,
-    #contact-form textarea::placeholder,
-    #contact-form select {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    #contact-form button[type="submit"] {
-      width: 100%;
-      padding: 8px;
-      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    #contact-form button[type="submit"]:hover {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 60px;
-        padding-bottom: 80px;
-      }
-
-      nav {
-        background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        padding: 10px;
-      }
-
-      nav ul {
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-      }
-
-      nav ul li {
-        margin: 0 5px;
-      }
-
-      nav ul li a {
-        font-size: 14px;
-        padding: 5px;
-      }
-
-      .logo {
-        display: none;
-      }
-
-      .container {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        width: 95%;
-        margin: 0 auto;
-      }
-
-      .scene {
-        width: 90%;
-        height: auto;
-        aspect-ratio: 1 / 1.5;
-        margin: 10px auto;
-      }
-
-      .info-section {
-        padding: 0 10px;
-        margin-top: 10px;
-      }
-
-      #contact-form {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        margin: 0;
-        border-radius: 10px 10px 0 0;
-      }
-
-      #contact-form.minimized {
-        width: 100%;
-        height: 50px;
-      }
-
-      .phone-content {
-        padding-top: 20px;
-      }
-
-      .profile-image {
-        width: 80px;
-        height: 80px;
-        margin-top: -10px;
-      }
-
-      .name {
-        font-size: 24px;
-        margin-top: 5px;
-      }
-
-      .job-title {
-        font-size: 16px;
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
-
-      .categories {
-        margin-top: 10px;
-      }
-
-      .category {
-        font-size: 14px;
-        padding: 6px 20px;
-        margin-bottom: 8px;
-      }
-    }
-
-    #contact-form select {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
-      appearance: none;
-      padding-right: 20px;
-      text-align: right;
-      direction: rtl;
-      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-      background-repeat: no-repeat;
-      background-position: left 8px center;
-    }
-
-    #contact-form select::-ms-expand {
-      display: none;
-    }
-
-    #contact-form select option {
-      background-color: #3498db;
-      color: white;
-      text-align: right;
-      direction: rtl;
-    }
-
-    #contact-form select::after {
-      content: none;
-    }
-  </style>
-  <script>
-    const scene = document.getElementById('scene');
-    const phone = document.getElementById('phone');
-    const socialLinks = document.querySelector('.social-links');
-    const faces = document.querySelectorAll('.phone-face');
-    let currentRotation = 0;
-    let currentFace = 0;
-
-    phone.addEventListener('click', () => {
-      currentFace = (currentFace + 1) % 3;
-      currentRotation -= 120;
-      updatePhoneRotation(0, 0);
-      updateActiveFace();
-    });
-
-    function updatePhoneRotation(rotateX, rotateY) {
-      phone.style.transform = `rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg) translateZ(50px)`;
-      socialLinks.style.transform = `translateX(-50%) translateZ(20px) rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg)`;
-    }
-
-    function updateActiveFace() {
-      faces.forEach((face, index) => {
-        if (index === currentFace) {
-          face.classList.add('active');
-        } else {
-          face.classList.remove('active');
-        }
-      });
-
-      const contactFormHeader = document.getElementById('contact-form-header');
-      contactFormHeader.style.fontWeight = 'normal';
-      contactFormHeader.style.textAlign = 'center';
-      contactFormHeader.style.lineHeight = '30px';
-
-      const toggleForm = document.getElementById('toggle-form');
-      toggleForm.style.lineHeight = '30px';
-      toggleForm.style.verticalAlign = 'middle';
-    }
-
-    function handleTouchMove(event) {
-      if (window.innerWidth <= 1080) {
-        // מבטל את הסיבוב במסכים קטנים
-        return;
-      }
-      const touch = event.touches[0];
-      const { clientX, clientY } = touch;
-      const { innerWidth, innerHeight } = window;
-      
-      const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
-      const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
-      
-      updatePhoneRotation(rotateX, rotateY);
-    }
-
-    if ('ontouchstart' in window) {
-      document.addEventListener('touchmove', handleTouchMove);
-    } else {
-      document.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const { innerWidth, innerHeight } = window;
-        
-        const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
-        const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
-        
-        updatePhoneRotation(rotateX, rotateY);
-      });
-    }
-
-    updateActiveFace();
-
-    const contactFormHeader = document.getElementById('contact-form-header');
-    const toggleForm = document.getElementById('toggle-form');
-    const contactForm = document.getElementById('contact-form');
-
-    function toggleContactForm() {
-      contactForm.classList.toggle('minimized');
-      toggleForm.textContent = contactForm.classList.contains('minimized') ? '+' : '-';
-      updateContactFormStyle();
-    }
-
-    contactFormHeader.addEventListener('click', function(event) {
-      if (event.target !== toggleForm) {
-        toggleContactForm();
-      }
-    });
-
-    toggleForm.addEventListener('click', function(event) {
-      event.stopPropagation();
-      toggleContactForm();
-    });
-
-    function updateContactFormStyle() {
-      const contactForm = document.getElementById('contact-form');
-      const contactFormHeader = document.getElementById('contact-form-header');
-      const toggleForm = document.getElementById('toggle-form');
-
-      if (contactForm.classList.contains('minimized')) {
-        contactFormHeader.style.justifyContent = 'center';
-        toggleForm.style.position = 'absolute';
-        toggleForm.style.right = '10px';
-      } else {
-        contactFormHeader.style.justifyContent = 'space-between';
-        toggleForm.style.position = 'static';
-      }
-    }
-
-    updateContactFormStyle();
-
-    const contactFormElement = document.getElementById('contactForm');
-    const thankYouMessage = document.createElement('div');
-    thankYouMessage.id = 'thankYouMessage';
-    thankYouMessage.textContent = 'תודה רבה על פנייתך, ניצור קשר בהקדם!';
-
-    contactFormElement.addEventListener('submit', handleSubmit);
-
-    function handleSubmit(event) {
-      event.preventDefault();
-      fetch(event.target.action, {
-        method: 'POST',
-        body: new FormData(event.target),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          showThankYouMessage();
-          setTimeout(() => {
-            resetForm();
-          }, 5000);
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              showErrors(data.errors);
-            } else {
-              showErrorMessage('שגיאה בשליחת הטופס');
-            }
-          });
-        }
-      })
-      .catch(error => {
-        showErrorMessage('שגיאה בשליחת הטופס');
-      });
-    }
-
-    function showThankYouMessage() {
-      contactFormElement.style.display = 'none';
-      contactFormElement.parentNode.insertBefore(thankYouMessage, contactFormElement);
-    }
-
-    function resetForm() {
-      thankYouMessage.remove();
-      contactFormElement.style.display = 'block';
-      contactFormElement.reset();
-    }
-
-    function showErrorMessage(message) {
-      alert(message);
-    }
-
-    function showErrors(errors) {
-      let errorMessage = 'שגיאות בטופס:\n';
-      errors.forEach(error => {
-        errorMessage += `- ${error.field}: ${error.message}\n`;
-      });
-      alert(errorMessage);
-    }
-  </script>
+  <!-- קישור לקובץ ה-JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
