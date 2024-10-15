@@ -838,15 +838,29 @@ nav ul li a i.fa-robot { color: #3498db; }
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
+    padding: 5px 0;
   }
 
   nav ul li {
-    margin: 0 5px;
+    margin: 0;
   }
 
   nav ul li a {
-    font-size: 14px;
+    font-size: 12px;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li a i {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  /* הסתרת הטקסט ליד האייקונים במובייל */
+  nav ul li a span {
+    display: none;
   }
 
   .logo {
@@ -921,7 +935,19 @@ nav ul li a i.fa-robot { color: #3498db; }
     font-size: 1rem;
   }
 
-  /* ... (שאר הקוד נשאר ללא שינוי) ... */
+  /* מירכוז האייקונים של הרשתות החברתיות */
+  .social-links {
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .social-link {
+    margin: 0 10px;
+  }
 }
 
 /* שאר הקוד נשאר ללא שינוי */
