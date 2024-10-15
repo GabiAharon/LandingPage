@@ -8,29 +8,19 @@ let currentFace = 0;
 
 if (phone) {
   phone.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
-      // במובייל, פשוט החלף בין הצדדים
-      faces.forEach(face => face.classList.toggle('active'));
-    } else {
-      // במחשב, המשך עם הסיבוב הרגיל
-      currentFace = (currentFace + 1) % faces.length;
-      currentRotation -= 180;
-      updatePhoneRotation(0, 0);
-      updateActiveFace();
-    }
+    currentFace = (currentFace + 1) % faces.length;
+    currentRotation -= 180;
+    updatePhoneRotation(0, 0);
+    updateActiveFace();
   });
 }
 
 function updatePhoneRotation(rotateX, rotateY) {
-  if (window.innerWidth <= 768) {
-    // אין סיבוב במובייל
-    return;
-  }
   if (phone) {
     phone.style.transform = `rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg) translateZ(50px)`;
   }
   if (socialLinks) {
-    socialLinks.style.transform = `translateX(-50%) translateZ(80px) rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg)`;
+    socialLinks.style.transform = `translateX(-50%) translateZ(80px) rotateY(${-(currentRotation + rotateY)}deg) rotateX(${-rotateX}deg)`;
   }
 }
 
@@ -44,34 +34,51 @@ function updateActiveFace() {
   });
 }
 
-function handleTouchMove(event) {
-  if (window.innerWidth <= 1080) {
-    // מבטל את הסיבוב במסכים קטנים
-    return;
+function handleMouseMove(event) {
+  if (window.innerWidth <= 768) {
+    return; // אין אפקט במובייל
   }
-  const touch = event.touches[0];
-  const { clientX, clientY } = touch;
+  const { clientX, clientY } = event;
   const { innerWidth, innerHeight } = window;
   
   const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
   const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
   
-  updatePhoneRotation(rotateX, rotateY);
+  requestAnimationFrame(() => updatePhoneRotation(rotateX, rotateY));
 }
 
-if ('ontouchstart' in window) {
-  document.addEventListener('touchmove', handleTouchMove);
-} else {
-  document.addEventListener('mousemove', (e) => {
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    
-    const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
-    const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
-    
-    updatePhoneRotation(rotateX, rotateY);
-  });
-}
+document.addEventListener('mousemove', handleMouseMove);
+
+// טיפול במגע במכשירים ניידים
+let touchStartX, touchStartY;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', (e) => {
+  if (window.innerWidth <= 768) {
+    return; // אין אפקט במובייל
+  }
+  const touchX = e.touches[0].clientX;
+  const touchY = e.touches[0].clientY;
+  
+  const rotateY = ((touchX - touchStartX) / window.innerWidth) * 40;
+  const rotateX = ((touchY - touchStartY) / window.innerHeight) * -40;
+  
+  requestAnimationFrame(() => updatePhoneRotation(rotateX, rotateY));
+});
+
+// אירוע resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768) {
+    if (phone) phone.style.transform = 'none';
+    if (socialLinks) socialLinks.style.transform = 'none';
+  } else {
+    updatePhoneRotation(0, 0);
+  }
+});
 
 updateActiveFace();
 
@@ -309,31 +316,6 @@ navToggle.addEventListener('click', () => {
   nav.classList.toggle('nav-open');
 });
 
-// ביטול אפקט הסיבוב של הטלפון במובייל
-function handlePhoneRotation(event) {
-  if (window.innerWidth <= 768) {
-    // ביטול הסיבוב במסכים קטנים
-    if (phone) {
-      phone.style.transform = 'none';
-    }
-    if (socialLinks) {
-      socialLinks.style.transform = 'none';
-    }
-    return;
-  }
-  // הקוד הקיים לסיבוב הטלפון במסכים גדולים
-  const { clientX, clientY } = event;
-  const { innerWidth, innerHeight } = window;
-  
-  const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
-  const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
-  
-  updatePhoneRotation(rotateX, rotateY);
-}
-
-// החלפת אירועי המאוס הקיימים באירוע זה
-document.addEventListener('mousemove', handlePhoneRotation);
-
 // התאמת הגלילה החלקה לקישורים בתפריט
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -348,21 +330,4 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       nav.classList.remove('nav-open');
     }
   });
-});
-
-// הוספת אירוע resize כדי לטפל בשינויי גודל המסך
-window.addEventListener('resize', () => {
-  if (window.innerWidth <= 768) {
-    // איפוס הטרנספורמציות במובייל
-    if (phone) {
-      phone.style.transform = 'none';
-    }
-    if (socialLinks) {
-      socialLinks.style.transform = 'none';
-    }
-  } else {
-    // החזרת הטרנספורמציות במחשב
-    updatePhoneRotation(0, 0);
-  }
-  updateActiveFace();
 });
