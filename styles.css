@@ -835,8 +835,8 @@ nav ul li a i.fa-robot { color: #3498db; }
   }
 
   nav ul {
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: row; /* שינוי לשורה אופקית */
+    justify-content: space-around; /* פיזור שווה של הפריטים */
     width: 100%;
     padding: 5px 0;
   }
@@ -849,7 +849,7 @@ nav ul li a i.fa-robot { color: #3498db; }
     font-size: 12px;
     padding: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* סידור האייקון והטקסט בעמודה */
     align-items: center;
   }
 
