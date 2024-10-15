@@ -19,20 +19,27 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  right: 0; /* שינוי מ-left ל-right */
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 0.5rem 2rem;
-  display: flex;
-  justify-content: flex-start; /* שינוי מ-space-between ל-flex-start */
-  align-items: center;
-  z-index: 1000;
-  border-bottom: 2px solid #bdc3c7;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+/* תפריט למחשב */
+@media (min-width: 769px) {
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 2px solid #bdc3c7;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-nav {
+    display: none;
+  }
 }
 
 .logo {
@@ -344,7 +351,7 @@ nav ul li a i.fa-robot { color: #3498db; }
 
 .category {
   display: flex; /* הוספת Flex */
-  align-items: center; /* יישור אנכי */
+  align-items: center; /* יי��ור אנכי */
   justify-content: center; /* יישור אופקי */
   font-size: 16px;
   text-align: center;
@@ -823,8 +830,8 @@ nav ul li a i.fa-robot { color: #3498db; }
 /* התאמה למובייל */
 @media (max-width: 768px) {
   body {
-    padding-top: 0; /* הסרת הריווח העליון */
-    padding-bottom: 60px; /* הוספת ריווח תחתון עבור התפריט הקבוע */
+    padding-top: 0;
+    padding-bottom: 60px; /* מרווח בתחתית עבור התפריט */
   }
 
   /* הסתרת התפריט הרגיל במובייל */
@@ -836,7 +843,7 @@ nav ul li a i.fa-robot { color: #3498db; }
   .mobile-nav {
     display: flex;
     position: fixed;
-    bottom: 0;
+    top: 0; /* שינוי מ-bottom ל-top */
     left: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.9);
@@ -844,8 +851,9 @@ nav ul li a i.fa-robot { color: #3498db; }
     padding: 10px 0;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    height: 60px; /* גובה קבוע לתפריט */
   }
 
   .mobile-nav a {
@@ -859,11 +867,12 @@ nav ul li a i.fa-robot { color: #3498db; }
 
   .mobile-nav i {
     font-size: 24px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
   }
 
   .hero {
-    margin-top: 0; /* הסרת הריווח העליון מה-hero */
+    margin-top: 60px; /* מרווח מעל ה-Hero כדי לפנות מקום לתפריט */
+    height: calc(60vh - 60px); /* התאמת גובה ה-Hero */
   }
 
   /* ... (שאר ההתאמות למובייל נשארות ללא שינוי) ... */
