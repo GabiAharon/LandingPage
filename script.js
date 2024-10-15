@@ -9,15 +9,15 @@ let currentFace = 0;
 if (phone) {
   phone.addEventListener('click', () => {
     if (window.innerWidth <= 768) {
-      // במובייל, החלף בין הצדדים
+      // במובייל, פשוט החלף בין הצדדים
       faces.forEach(face => face.classList.toggle('active'));
     } else {
       // במחשב, המשך עם הסיבוב הרגיל
       currentFace = (currentFace + 1) % faces.length;
       currentRotation -= 180;
       updatePhoneRotation(0, 0);
+      updateActiveFace();
     }
-    updateActiveFace();
   });
 }
 
@@ -30,7 +30,7 @@ function updatePhoneRotation(rotateX, rotateY) {
     phone.style.transform = `rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg) translateZ(50px)`;
   }
   if (socialLinks) {
-    socialLinks.style.transform = `translateX(-50%) translateZ(80px) rotateY(${-currentRotation - rotateY}deg) rotateX(${-rotateX}deg)`;
+    socialLinks.style.transform = `translateX(-50%) translateZ(80px) rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg)`;
   }
 }
 
@@ -281,7 +281,7 @@ projectCards.forEach(card => {
   observer.observe(card);
 });
 
-// אפ��ט סיבוב לכרטיסיות הפרויקטים
+// אפט סיבוב לכרטיסיות הפרויקטים
 document.addEventListener('DOMContentLoaded', (event) => {
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -313,6 +313,12 @@ navToggle.addEventListener('click', () => {
 function handlePhoneRotation(event) {
   if (window.innerWidth <= 768) {
     // ביטול הסיבוב במסכים קטנים
+    if (phone) {
+      phone.style.transform = 'none';
+    }
+    if (socialLinks) {
+      socialLinks.style.transform = 'none';
+    }
     return;
   }
   // הקוד הקיים לסיבוב הטלפון במסכים גדולים
