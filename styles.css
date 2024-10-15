@@ -92,7 +92,19 @@ nav ul li a:hover::after {
 nav ul li a i {
   margin-left: 8px;
   font-size: 1.2rem;
+  color: #2c3e50; /* Default color for all icons */
+  transition: color 0.3s ease;
 }
+
+nav ul li a:hover i {
+  color: #3498db; /* Color on hover for all icons */
+}
+
+/* Specific colors for each icon if desired */
+nav ul li a i.fa-home { color: #e74c3c; }
+nav ul li a i.fa-chalkboard-teacher { color: #2ecc71; }
+nav ul li a i.fa-briefcase { color: #f39c12; }
+nav ul li a i.fa-robot { color: #3498db; }
 
 /* סקשן Hero */
 .hero {
@@ -127,6 +139,25 @@ nav ul li a i {
   transform: translateY(-20px);
   animation: fadeInUp 1s forwards;
   animation-delay: 0.5s;
+}
+
+/* סגנונות עבור ה-Hero ב-ai.html */
+.ai-hero {
+  background-image: url('https://i.postimg.cc/qvGyxkGx/18041990-1.png');
+  background-size: cover;
+  background-position: center;
+  height: 60vh; /* או כל גובה אחר שתעדיף */
+}
+
+.ai-hero .hero-content {
+  text-align: right;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 @keyframes fadeInUp {
@@ -221,7 +252,7 @@ nav ul li a i {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   cursor: pointer; /* שינוי סמן העכבר */
   /* החלפת רקע לתמונה */
-  background-image: url('https://i.postimg.cc/dtVsBtcf/image.png');
+  background-image: url('https://i.postimg.cc/QdgSQHGr/image.png');
   background-size: cover;
   background-position: center;
   border-radius: 30px;
@@ -327,6 +358,10 @@ nav ul li a i {
   transition: all 0.3s ease;
   animation: gradientBG 15s ease infinite;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
 }
 
 .category i {
@@ -1122,4 +1157,226 @@ nav ul li a i {
   #contact-form.minimized {
     width: 100%;
   }
+}
+
+nav ul li a i.fa-robot {
+  color: #3498db; /* או כל צבע אחר שתרצה */
+}
+
+/* סגנונות לגלריית הפלאפונים */
+.phone-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.mini-phone {
+  width: 100%;
+  aspect-ratio: 9/16;
+  perspective: 1000px;
+}
+
+.mini-phone-frame {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.mini-phone-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.mini-phone:hover .mini-phone-frame {
+  transform: scale(1.05);
+}
+
+.mini-phone:hover .mini-phone-image {
+  transform: scale(1.1);
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 768px) {
+  .phone-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+
+/* סגנונות לגלריית הכרטיסיות */
+.card-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 עמודות */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.1);
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 768px) {
+  .card-gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 עמודות במובייל */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-gallery {
+    grid-template-columns: 1fr; /* עמודה אחת במסכים קטנים מאוד */
+  }
+}
+
+.ai-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.ai-section h2 {
+  color: #4a90e2;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.ai-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.ai-section .cta-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.ai-section .cta-button:hover {
+  background-color: #3a7bc8;
+}
+
+.portfolio-section {
+  padding: 50px 0;
+}
+
+.portfolio-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #4a90e2;
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.portfolio-item {
+  width: 300px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.portfolio-item-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.portfolio-item:hover .portfolio-item-inner {
+  transform: rotateY(180deg);
+}
+
+.portfolio-item-front, .portfolio-item-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.portfolio-item-front {
+  background-color: #f9f9f9;
+}
+
+.portfolio-item-back {
+  background-color: #4a90e2;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.portfolio-item h3 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: white;
+  color: #4a90e2;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+  background-color: #f0f0f0;
 }
