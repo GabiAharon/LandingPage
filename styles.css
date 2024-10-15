@@ -822,74 +822,106 @@ nav ul li a i.fa-robot { color: #3498db; }
 
 /* התאמה למובייל */
 @media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
   nav {
-    padding: 0.5rem;
+    background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 10px;
   }
 
   nav ul {
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-    padding: 0;
   }
 
   nav ul li {
-    margin: 0;
+    margin: 0 5px;
   }
 
   nav ul li a {
-    font-size: 0.9rem;
+    font-size: 14px;
     padding: 5px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul li a i {
-    margin-left: 0;
-    margin-bottom: 5px;
   }
 
   .logo {
     display: none;
   }
 
-  /* תיקון הפלאפון */
+  .hero {
+    height: 40vh;
+    margin-top: 60px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .main-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 95%;
+    margin: 0 auto;
+  }
+
   .scene {
-    perspective: none;
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1 / 1.5;
+    margin: 10px auto;
   }
 
-  .phone {
-    transform-style: flat;
+  .info-section {
+    padding: 0 10px;
+    margin-top: 10px;
   }
 
-  .phone-face {
-    position: absolute;
-    backface-visibility: visible;
-    transition: opacity 0.3s ease;
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    gap: 20px;
+    padding-right: 0;
   }
 
-  .phone-face.back {
-    opacity: 0;
-    pointer-events: none;
+  .contact-info h2 {
+    font-size: 1.5rem;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 
-  .phone-face.front.active + .phone-face.back {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* תיקון האייקונים של הרשתות החברתיות */
-  .social-links {
-    position: static;
-    transform: none;
-    display: flex;
+  .contact-info p {
+    font-size: 1rem;
     justify-content: center;
-    margin-top: 20px;
+    margin: 5px 0;
   }
 
-  .social-link {
-    margin: 0 10px;
+  .contact-info p i {
+    margin-left: 8px;
+    font-size: 1rem;
   }
+
+  /* ... (שאר הקוד נשאר ללא שינוי) ... */
 }
 
 /* שאר הקוד נשאר ללא שינוי */
