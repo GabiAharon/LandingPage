@@ -8,14 +8,24 @@ let currentFace = 0;
 
 if (phone) {
   phone.addEventListener('click', () => {
-    currentFace = (currentFace + 1) % faces.length;
-    currentRotation -= 180; // עדכון ל-180 מעלות כדי להציג את הצד האחורי
-    updatePhoneRotation(0, 0);
-    updateActiveFace();
+    if (window.innerWidth <= 768) {
+      // במובייל, פשוט החלף בין הצדדים
+      faces.forEach(face => face.classList.toggle('active'));
+    } else {
+      // במחשב, המשך עם הסיבוב הרגיל
+      currentFace = (currentFace + 1) % faces.length;
+      currentRotation -= 180; // עדכון ל-180 מעלות כדי להציג את הצד האחורי
+      updatePhoneRotation(0, 0);
+      updateActiveFace();
+    }
   });
 }
 
 function updatePhoneRotation(rotateX, rotateY) {
+  if (window.innerWidth <= 768) {
+    // אין סיבוב במובייל
+    return;
+  }
   if (phone) {
     phone.style.transform = `rotateY(${currentRotation + rotateY}deg) rotateX(${rotateX}deg) translateZ(50px)`;
   }
@@ -302,10 +312,23 @@ navToggle.addEventListener('click', () => {
 // ביטול אפקט הסיבוב של הטלפון במובייל
 function handlePhoneRotation(event) {
   if (window.innerWidth <= 768) {
-    // מבטל את הסיבוב במסכים קטנים
+    // ביטול הסיבוב במסכים קטנים
+    if (phone) {
+      phone.style.transform = 'none';
+    }
+    if (socialLinks) {
+      socialLinks.style.transform = 'none';
+    }
     return;
   }
-  // הקוד הקיים לסיבוב הטלפון
+  // הקוד הקיים לסיבוב הטלפון במסכים גדולים
+  const { clientX, clientY } = event;
+  const { innerWidth, innerHeight } = window;
+  
+  const rotateY = ((clientX - innerWidth / 2) / (innerWidth / 2)) * 20;
+  const rotateX = ((clientY - innerHeight / 2) / (innerHeight / 2)) * -20;
+  
+  updatePhoneRotation(rotateX, rotateY);
 }
 
 // החלפת אירועי המאוס הקיימים באירוע זה
@@ -325,4 +348,20 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       nav.classList.remove('nav-open');
     }
   });
+});
+
+// הוספת אירוע resize כדי לטפל בשינויי גודל המסך
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768) {
+    // איפוס הטרנספורמציות במובייל
+    if (phone) {
+      phone.style.transform = 'none';
+    }
+    if (socialLinks) {
+      socialLinks.style.transform = 'none';
+    }
+  } else {
+    // החזרת הטרנספורמציות במחשב
+    updatePhoneRotation(0, 0);
+  }
 });
