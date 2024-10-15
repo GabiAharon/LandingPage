@@ -285,3 +285,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
   });
 });
+
+// הוספת פונקציונליות לתפריט המובייל
+const navToggle = document.createElement('button');
+navToggle.classList.add('nav-toggle');
+navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+navToggle.setAttribute('aria-label', 'Toggle navigation');
+
+const nav = document.querySelector('nav');
+nav.insertBefore(navToggle, nav.firstChild);
+
+navToggle.addEventListener('click', () => {
+  nav.classList.toggle('nav-open');
+});
+
+// ביטול אפקט הסיבוב של הטלפון במובייל
+function handlePhoneRotation(event) {
+  if (window.innerWidth <= 768) {
+    // מבטל את הסיבוב במסכים קטנים
+    return;
+  }
+  // הקוד הקיים לסיבוב הטלפון
+}
+
+// החלפת אירועי המאוס הקיימים באירוע זה
+document.addEventListener('mousemove', handlePhoneRotation);
+
+// התאמת הגלילה החלקה לקישורים בתפריט
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+      // סגירת התפריט במובייל לאחר לחיצה על קישור
+      nav.classList.remove('nav-open');
+    }
+  });
+});
