@@ -822,49 +822,44 @@ nav ul li a i.fa-robot { color: #3498db; }
 
 /* התאמה למובייל */
 @media (max-width: 768px) {
+  /* הסתרת התפריט הרגיל במובייל */
+  nav {
+    display: none;
+  }
+
+  /* תפריט חדש למובייל */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .mobile-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+
+  .mobile-nav i {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
   body {
     padding-top: 60px;
     padding-bottom: 80px;
-  }
-
-  nav {
-    background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    padding: 10px;
-  }
-
-  nav ul {
-    flex-direction: row; /* שינוי לשורה אופקית */
-    justify-content: space-around; /* פיזור שווה של הפריטים */
-    width: 100%;
-    padding: 5px 0;
-  }
-
-  nav ul li {
-    margin: 0;
-  }
-
-  nav ul li a {
-    font-size: 12px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column; /* סידור האייקון והטקסט בעמודה */
-    align-items: center;
-  }
-
-  nav ul li a i {
-    font-size: 18px;
-    margin-bottom: 2px;
-  }
-
-  /* הסתרת הטקסט ליד האייקונים במובייל */
-  nav ul li a span {
-    display: none;
-  }
-
-  .logo {
-    display: none;
   }
 
   .hero {
