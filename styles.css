@@ -318,7 +318,7 @@ body {
     border: 4px solid white;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin-top: -30px;
-    /* יישור למכ */
+    /* יישור למ�� */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -779,7 +779,7 @@ body {
     100% { background-position: 0% 50%; }
   }
   
-  /* מיקום הצ'אט בצד שמאל */
+  /* מיקום הצ'אט ��צד שמאל */
   .tawk-chat {
     position: fixed;
     bottom: 20px;
