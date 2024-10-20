@@ -318,7 +318,7 @@ body {
     border: 4px solid white;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin-top: -30px;
-    /* יישור למ��כ�� */
+    /* יישור למכ */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -825,6 +825,7 @@ body {
     body {
       padding-top: 60px;
       padding-bottom: 80px;
+      font-size: 16px; /* גודל בסיסי לטקסט במובייל */
     }
   
     nav {
@@ -832,34 +833,40 @@ body {
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       padding: 10px;
+      height: 60px; /* גובה קבוע לתפריט */
+      display: flex;
+      align-items: center;
     }
   
     nav ul {
-      flex-direction: row;
+      flex-direction: row; /* סידור אופקי של פריטי התפריט */
       justify-content: space-around;
       width: 100%;
+      margin: 0;
+      padding: 0;
     }
   
     nav ul li {
-      margin: 0 5px;
+      margin: 0;
     }
   
     nav ul li a {
       font-size: 14px;
-      padding: 5px;
+      padding: 5px 10px;
+      white-space: nowrap; /* מניעת שבירת שורות בטקסט */
     }
   
     .logo {
-      display: none;
+      display: none; /* הסתרת הלוגו במובייל */
     }
   
     .hero {
       height: 40vh;
-      margin-top: 60px; /* התאמת מרווח מותאם למובייל */
+      margin-top: 60px;
     }
   
     .hero-content h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   
     .hero-content p {
@@ -867,13 +874,13 @@ body {
     }
   
     .cta-button {
-      padding: 10px 20px;
+      padding: 8px 16px;
       font-size: 14px;
     }
   
     .main-content {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
   
     .container {
@@ -885,9 +892,9 @@ body {
     }
   
     .scene {
-      width: 90%;
+      width: 100%;
       height: auto;
-      aspect-ratio: 1 / 1.5;
+      aspect-ratio: 1 / 2;
       margin: 10px auto;
     }
   
@@ -896,87 +903,30 @@ body {
       margin-top: 10px;
     }
   
-    .contact-info {
-      flex-direction: column;
-      align-items: center;
-      padding: 15px;
-      gap: 20px; /* רווחים שווים בין המייל לפלאפון */
-      padding-right: 0; /* הסרת הזזת ימינה במובייל */
+    .info-section h1 {
+      font-size: 1.8rem;
     }
   
-    .contact-info h2 {
-      font-size: 1.5rem;
-      margin-right: 0;
-      margin-bottom: 10px;
+    .info-section h2 {
+      font-size: 1.2rem;
     }
   
-    .contact-info p {
-      font-size: 1rem;
-      justify-content: center;
-      margin: 5px 0;
-    }
-  
-    .contact-info p i {
-      margin-left: 8px;
+    .info-section p {
       font-size: 1rem;
     }
   
-    .phone-content {
-      padding-top: 20px;
-    }
-  
-    .profile-image {
-      width: 80px;
-      height: 80px;
-      margin-top: -10px;
-    }
-  
-    .name {
-      font-size: 24px;
-      margin-top: 5px;
-      text-align: center; /* יישור למרכז במובייל */
-    }
-  
-    .job-title {
-      font-size: 16px;
-      margin-top: 0;
-      margin-bottom: 10px;
-      text-align: right; /* שמירה על יישור לימין במובייל */
-    }
-  
-    .categories {
-      margin-top: 10px;
-    }
-  
-    .category {
-      font-size: 14px;
-      padding: 6px 20px;
-      margin-bottom: 8px;
-    }
-  
+    /* התאמת חוות דעת במובייל */
     .testimonials {
-      padding: 20px;
+      padding: 15px;
       margin-top: 20px;
     }
   
-    .testimonials h2 {
-      font-size: 1.5rem;
+    .testimonial {
+      width: 250px;
     }
   
     .testimonial p {
-      font-size: 1rem;
-    }
-  
-    /* הסרת position fixed של testimonials ו-footer במובייל */
-    .testimonials {
-      position: relative;
-      margin-top: 20px;
-    }
-  
-    .footer {
-      position: relative;
-      margin-top: 20px;
-      padding: 10px 0;
+      font-size: 0.9rem;
     }
   
     /* התאמת טופס יצירת קשר */
@@ -995,14 +945,9 @@ body {
       height: 50px;
     }
   
-    /* התאמת חוות דעת במובייל */
-    .testimonials {
-      padding: 15px;
-      margin-top: 20px;
-    }
-  
+    /* התאמת הפוטר */
     .footer {
-      margin-top: 20px;
+      padding: 10px 0;
     }
   
     .contact-info {
@@ -1011,8 +956,13 @@ body {
     }
   
     .contact-info h2 {
-      margin-right: 0;
+      font-size: 1.5rem;
       margin-bottom: 10px;
+    }
+  
+    .contact-info p {
+      font-size: 0.9rem;
+      margin: 5px 0;
     }
   }
   
