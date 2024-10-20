@@ -825,21 +825,27 @@ body {
     body {
       padding-top: 60px;
       padding-bottom: 80px;
-      font-size: 16px; /* גודל בסיסי לטקסט במובייל */
+      font-size: 16px;
     }
   
     nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
-      padding: 10px;
-      height: 60px; /* גובה קבוע לתפריט */
+      padding: 10px 5px;
+      height: auto;
       display: flex;
+      justify-content: space-around;
       align-items: center;
+      z-index: 1000;
     }
   
     nav ul {
-      flex-direction: row; /* סידור אופקי של פריטי התפריט */
+      display: flex;
       justify-content: space-around;
       width: 100%;
       margin: 0;
@@ -852,25 +858,36 @@ body {
   
     nav ul li a {
       font-size: 14px;
-      padding: 5px 10px;
-      white-space: nowrap; /* מניעת שבירת שורות בטקסט */
+      padding: 5px;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    nav ul li a i {
+      font-size: 20px;
+      margin-bottom: 2px;
     }
   
     .logo {
-      display: none; /* הסתרת הלוגו במובייל */
+      display: none;
     }
   
     .hero {
-      height: 40vh;
+      height: auto;
+      min-height: 40vh;
       margin-top: 60px;
+      padding: 20px 10px;
     }
   
     .hero-content h1 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   
     .hero-content p {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   
     .cta-button {
@@ -893,6 +910,7 @@ body {
   
     .scene {
       width: 100%;
+      max-width: 300px;
       height: auto;
       aspect-ratio: 1 / 2;
       margin: 10px auto;
@@ -904,15 +922,15 @@ body {
     }
   
     .info-section h1 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   
     .info-section h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
   
     .info-section p {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   
     /* התאמת חוות דעת במובייל */
@@ -956,7 +974,7 @@ body {
     }
   
     .contact-info h2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 10px;
     }
   
