@@ -770,6 +770,157 @@
                 gap: 5px; /* הקטנת המרווח עוד יותר */
             }
         }
+
+        /* Media Queries for different screen sizes */
+        
+        /* iPhone Mini and similar (375x812) */
+        @media screen and (device-width: 375px) and (device-height: 812px),
+               screen and (max-width: 375px) {
+            .story-container {
+                padding: 10px;
+            }
+
+            .story-text h2 {
+                font-size: 2rem;
+            }
+
+            .story-text p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .story-image {
+                height: 300px;
+            }
+        }
+
+        /* Standard small devices (360x640) */
+        @media screen and (max-width: 360px) {
+            .story-text h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul li a {
+                font-size: 0.7rem;
+                padding: 3px 6px;
+            }
+
+            nav ul li a i {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* iPhone Pro Max and similar (414x896) */
+        @media screen and (device-width: 414px) and (device-height: 896px),
+               screen and (max-width: 414px) {
+            .story-container {
+                padding: 15px;
+            }
+
+            .story-text h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Large Android devices (412x915) - S22, Pixel 6 */
+        @media screen and (device-width: 412px) and (device-height: 915px),
+               screen and (max-width: 412px) {
+            .story-container {
+                padding: 15px;
+            }
+        }
+
+        /* Full HD+ devices (1080x2340) */
+        @media screen and (device-width: 1080px) and (device-height: 2340px),
+               screen and (max-width: 1080px) {
+            .story-container {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+        }
+
+        /* Aspect ratio specific adjustments */
+        @media screen and (aspect-ratio: 19.5/9) {
+            .story-section {
+                margin-top: 95vh;
+            }
+
+            #video-container {
+                height: 95vh;
+            }
+        }
+
+        /* General responsive design improvements */
+        @media screen and (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .main-title {
+                padding: 0 15px;
+            }
+
+            .story-section {
+                margin-top: 90vh;
+            }
+
+            .achievements-section,
+            .certificates-section,
+            .cta-section {
+                padding: 30px 15px;
+            }
+
+            /* Keep the navigation styles we fixed earlier */
+            nav {
+                padding: 10px 0;
+                width: 100%;
+            }
+
+            nav ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            nav ul li a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-size: 0.75rem;
+                padding: 5px 8px;
+                white-space: nowrap;
+            }
+
+            nav ul li a i {
+                font-size: 1rem;
+                margin-left: 4px;
+            }
+        }
+
+        /* High pixel density screens */
+        @media screen and (-webkit-min-device-pixel-ratio: 2),
+               screen and (min-resolution: 192dpi) {
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Ensure content is readable on ultra-wide screens */
+        @media screen and (min-width: 1920px) {
+            .story-container {
+                max-width: 1600px;
+            }
+        }
     </style>
 </head>
 <body>
