@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>גבי אהרון - עמידה מול קהל</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* סגנונות ספציפיים לדף זה בלבד */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #3533CD 0%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* שאר הסגנונות נשארים זהים */
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        #video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%) scale(1.5);
+            object-fit: cover;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            animation: bounce 2s infinite;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .story-section {
+            margin-top: 100vh;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 2;
+            color: white;
+            background: rgba(0, 0, 0, 0.9); /* רקע שחור שקוף פשוט */
+        }
+
+        .story-container {
+            max-width: 1400px; /* הגדלה מ-1200px */
+            margin: 0 auto;
+            display: flex;
+            gap: 60px; /* הגדלת המרווח בין האלמנטים */
+            align-items: center;
+            position: relative;
+            padding: 0 100px; /* הוספת ריפוד בצדדים */
+        }
+
+        .story-text h2 {
+            font-family: "Rubik Dirt", system-ui;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #FFD700;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .story-text {
+            flex: 1;
+            max-width: 800px; /* הגבלת רוחב מקסימלי לטקסט */
+            margin: 0 auto;
+        }
+
+        .story-text p {
+            font-family: Assistant, sans-serif;
+            font-size: 1.3rem; /* הגדלת גודל הטקסט */
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        .story-image {
+            flex: 0 0 400px;
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .story-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .story-image {
+                width: 100%;
+                height: 400px;
+            }
+
+            .story-text h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .tips-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px; /* הגדלת רוחב הטיפים */
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .tips-container.left {
+            left: -300px; /* הזזה החוצה יותר */
+            transform: translateY(-50%) translateX(-100%);
+        }
+
+        .tips-container.right {
+            right: -300px; /* הזזה החוצה יותר */
+            transform: translateY(-50%) translateX(100%);
+        }
+
+        .tips-container.left.show {
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .tips-container.right.show {
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* מסיר את אנימציית ה-hover הקודמת */
+        .tips-container.left:hover,
+        .tips-container.right:hover {
+            transform: none;
+        }
+
+        /* מסיר את החץ כי הוא כבר לא נחוץ */
+        .tip-card::after {
+            display: none;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* שומר על אפקט ההגדלה בהובר על הכרטיסיות עצמן */
+        .tip-card:hover {
+            transform: scale(1.05);
+        }
+
+        .tip-card h3 {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-family: Assistant, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-card h3 i {
+            font-size: 1.4rem;
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-family: Assistant, sans-serif;
+        }
+
+        @media (max-width: 1600px) {
+            .story-container {
+                max-width: 1200px;
+                padding: 0 50px;
+            }
+            
+            .story-text {
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .story-text {
+                max-width: 100%;
+            }
+
+            .story-text p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+        }
+
+        .achievements-section {
+            padding: 80px 40px;
+            background: linear-gradient(45deg, rgba(53, 51, 205, 0.9), rgba(0, 0, 0, 0.9));
+            margin-top: 40px; /* מרווח מהסקשן הקודם */
+        }
+
+        .achievements-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievements-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 50px;
+            font-family: "Rubik Dirt", system-ui;
+        }
+
+        .achievements-grid {
+            display: flex; /* שינוי מ-grid ל-flex */
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .achievement-card {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 0 10px; /* מרווח בין הכרטיסים */
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .achievement-card i {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .achievement-details {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .achievement-details p {
+            font-size: 1rem;
+            color: white;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .achievement-card {
+                min-width: calc(50% - 40px); /* שני כרטיסים בשורה במסכים בינוניים */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .achievement-card {
+                min-width: 100%; /* כרטיס אחד בשורה במסכים קטנים */
+            }
+        }
+
+        .certificates-section {
+            margin-top: 40px;
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center; /* הוספת מירכוז לכל הסקשן */
+        }
+
+        .certificates-section h2 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-family: "Rubik Dirt", system-ui;
+        }
+
+        .certificates-grid {
+            display: flex;
+            justify-content: center; /* מירכוז הכרטיסיות */
+            gap: 40px; /* הגדלת המרווח בין הכרטיסיות */
+            flex-wrap: wrap;
+            max-width: 1000px; /* הגבלת רוחב מקסימלי */
+            margin: 0 auto; /* מירכוז המיכל */
+        }
+
+        .certificate-card {
+            flex: 0 1 450px; /* הגדלת הרוחב המקסימלי של כל כרטיסיה */
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px; /* הוספת מרווח בצדדים */
+        }
+
+        .certificate-content {
+            padding: 25px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3); /* הוספת רקע כהה לתוכן */
+        }
+
+        .certificate-content h3 {
+            color: #FFD700;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .certificate-content p {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .certificates-grid {
+                gap: 30px;
+            }
+            
+            .certificate-card {
+                flex: 0 1 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .certificates-grid {
+                gap: 20px;
+            }
+            
+            .certificate-card {
+                flex: 0 1 100%;
+                margin: 0;
+            }
+        }
+
+        .cta-section {
+            margin-top: 40px; /* מרווח מהסקשן הקודם */
+            padding: 60px 40px;
+            background: linear-gradient(45deg, rgba(53, 51, 205, 0.9), rgba(0, 0, 0, 0.9));
+            text-align: center;
+            color: white;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-family: "Rubik Dirt", system-ui;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button.primary {
+            background: #FFD700;
+            color: black;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* עדכון/הוספת media queries */
+        @media (max-width: 768px) {
+            /* התאמת סיפור ותמונה */
+            .story-container {
+                flex-direction: column;
+                padding: 20px;
+                gap: 30px;
+            }
+
+            .story-text {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+
+            .story-text h2 {
+                font-size: 2.8rem;
+                text-align: center;
+            }
+
+            .story-text p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                text-align: right;
+            }
+
+            .story-image {
+                width: 100%;
+                height: 400px;
+                margin: 20px 0;
+            }
+
+            /* התאמת טיפים למובייל */
+            .tips-container {
+                position: static;
+                width: 100%;
+                transform: none;
+                margin: 30px 0;
+            }
+
+            .tips-container.left,
+            .tips-container.right {
+                left: auto;
+                right: auto;
+                transform: none;
+            }
+
+            .tips-container.left.show,
+            .tips-container.right.show {
+                transform: none;
+            }
+
+            .tip-card {
+                margin: 15px 0;
+                padding: 25px;
+            }
+
+            .tip-card h3 {
+                font-size: 1.3rem;
+                justify-content: center;
+            }
+
+            .tip-card p {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            /* התאמת הישגים */
+            .achievements-section {
+                padding: 40px 20px;
+            }
+
+            .achievements-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .achievement-card {
+                margin: 10px 0;
+                padding: 25px;
+            }
+
+            .achievement-card i {
+                font-size: 2.5rem;
+            }
+
+            /* התאמת תעודות */
+            .certificates-section {
+                padding: 40px 20px;
+            }
+
+            .certificates-grid {
+                gap: 30px;
+            }
+
+            .certificate-card {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .certificate-image {
+                height: 250px;
+            }
+
+            /* התאמת CTA */
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .cta-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 20px;
+            }
+        }
+
+        /* התאמות נוספות לטאבלט */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .story-container {
+                padding: 0 30px;
+                gap: 40px;
+            }
+
+            .story-text {
+                max-width: 600px;
+            }
+
+            .story-image {
+                flex: 0 0 350px;
+                height: 500px;
+            }
+
+            .achievements-grid {
+                gap: 20px;
+            }
+
+            .achievement-card {
+                min-width: calc(50% - 20px);
+            }
+        }
+
+        /* התאמות למסכים קטנים מאוד */
+        @media (max-width: 480px) {
+            .story-text h2 {
+                font-size: 2.3rem;
+            }
+
+            .story-text p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .story-image {
+                height: 300px;
+            }
+
+            .achievement-card {
+                padding: 20px;
+            }
+
+            .achievement-details {
+                font-size: 2rem;
+            }
+
+            .certificate-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- תפריט ניווט -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> דף הבית</a></li>
+            <li><a href="lecture.html"><i class="fas fa-chalkboard-teacher"></i> הרצאות</a></li>
+            <li><a href="ai.html"><i class="fas fa-robot"></i> AI</a></li>
+            <li><a href="body-language.html"><i class="fas fa-user-friends"></i> עמידה מול קהל</a></li>
+        </ul>
+        <a href="index.html" class="logo" aria-label="חזרה לדף הבית">
+            <img src="https://i.postimg.cc/1z4wp5xG/image.png" alt="גבי אהרון לוגו">
+        </a>
+    </nav>
+
+    <div id="video-container">
+        <iframe 
+            id="video-background"
+            src="https://www.youtube.com/embed/AzQ8X038bDQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playlist=AzQ8X038bDQ&vq=hd1080&modestbranding=1&playsinline=1&enablejsapi=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media"
+            style="pointer-events: none;">
+        </iframe>
+    </div>
+
+    <div class="scroll-indicator">
+        <p>גלול למטה</p>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <section class="story-section">
+        <div class="story-container">
+            <div class="tips-container left">
+                <div class="tip-card">
+                    <h3><i class="fas fa-door-open"></i> שפת גוף פתוחה</h3>
+                    <p>שמרו על כתפיים פתוחות וידיים משוחררות. הימנעו מהצלבת ידיים - זה משדר פתיחות וביטחון.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-eye"></i> קשר עין</h3>
+                    <p>צרו קשר עין עם הקהל. סרקו את החדר באיטיות והתעכבו על אנשים שונים למספר שניות.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-wind"></i> נשימה נכונה</h3>
+                    <p>נשמו עמוק לפני ובמהלך ההרצאה. נשימה נכונה מפחיתה חרדה ומשפרת את איכות הדיבור.</p>
+                </div>
+            </div>
+            <div class="story-text">
+                <h2>הסיפור שלי</h2>
+                <p>נעים מאוד, אני גבי אהרון, מהנדס מכונות ואיש של אנשים. אני אוהב לקרוא לעצמי כך, כי באמת, מי שמכיר אותי יודע שאני אוהב כלים, מכונות, ובאותה מידה - אנשים.</p>
+                
+                <p>אז איך הגעתי לעולם הזה של יזמות, העברת הכשרות ושפת גוף? זה סיפור שמתחיל בהחלטות שהיו, איך לומר זאת, לא הכי נכונות. בגיל צעיר בחרתי ללמוד הנדסת מכונות. מה לעשות? זה נראה מסלול בטוח. אבל האמת היא, שכבר מהשנה הראשונה יכולתי להרגיש את החלומות שלי מצטברים לאבק, דוחק אותם לפינה כדי לעמוד בתנאים, במבחנים ובשגרה. ובכל זאת, סיימתי בהצלחה תואר קשה ודרכתי במפעלים, מתמודד עם מהנדסות חיים אמיתיים. ואז, יום אחד, כשעמדתי ליד מכונה שלא הפסיקה להשמיע רעש מוזר, החלטתי - די. אני צריך שינוי. ולא סתם שינוי - שינוי שעושה טוב על הלב.</p>
+
+                <p>וכך מצאתי את עצמי נכנס לעולם החברתי, מצטרף לעמותה מדהימה שמקדמת יזמות בקרב בני נוער. בעבודה הזו גיליתי את הפנים האמיתיות שלי - הפנים של המדריך, המורה, זה שמוביל ומחנך את הדור הבא של היזמים הצעירים. הייתי שם במצגות, בגיוסי ההון, בהכנה לפרזנטציות של משקיעים, והייתי גם שם כשהלבבות רעדו, כשהביטחון עלה, והחיוכים של ניצחון עברו מחדר אחד לחדר שני.</p>
+
+                <p>אבל הסיפור שלי עם שפת הגוף מתחיל הרבה קודם, אי שם בגיל 15, כשנכנס לכיתה במאי צרפתי מתוק בשם יעקב אמסלם, והודיע לנו שהוא מחפש בני נוער לתיאטרון שהוא פותח בבאר שבע. הייתי ביישן, ובאמת שאם חברים שלי לא היו אומרים "בוא ננסה", אולי הייתי נשאר בבית. אבל הלכתי. ניסיתי. התקבלתי. התאהבתי. ומאז, לא ירדתי מהבמה.</p>
+
+                <p>שיחקתי בתפקידים ראשיים, ריגשתי והתרגשתי, אך הרגשתי שהכוח שלי מוגבל לבמה עצמה. רציתי יותר מזה - רציתי שהיכולת שלי לתקשר ולהשפיע תתקיים גם מחוץ לדמות, מחוץ לאורות הזרקורים. רציתי לשנות את הדרך בה אני רואה את העולם - והעולם רואה אותי. הביטחון שצברתי על הבמה פתח לי שער לשפה חדשה, שפת הגוף.</p>
+
+                <p>היום, אני מעביר סדנאות והרצאות בנושאי שפת גוף, עמידה מול קהל, והיכולת לדבר את עצמנו בצורה הכי אמיתית ומרגשת שיש. אני מאמין שכמו ששפת הגוף שינתה לי את החיים, היא יכולה לשנות גם לכם - לתת את הכלים להבין איך אנחנו נראים, איך אנחנו נשמעים, ואיך לגרום למי שמולנו להקשיב, באמת להקשיב.</p>
+
+                <p>אז אם אתם רוצים להתרגש, לצחוק, ולגלות איך אתם יכולים לשנות את הדרך בה העולם רואה אתכם - אני כאן, מוכן לצאת איתכם למסע הזה. מוזמנים ליצור איתי קשר. ההרפתקה הזו רק מתחילה.</p>
+            </div>
+            <div class="story-image">
+                <img src="https://i.postimg.cc/wjRt8S0W/45.png" alt="גבי אהרון">
+            </div>
+            <div class="tips-container right">
+                <div class="tip-card">
+                    <h3><i class="fas fa-walking"></i> תנועה במחב</h3>
+                    <p>נועו במרחב בטבעיות. תנועה מתונה על הבמה עוזרת לשמור על עניין ומעורבות הקהל.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-microphone-alt"></i> טון דיבור</h3>
+                    <p>שנו את טון הדיבור שלכם. הימנעו מדיבור מונוטוני - השתמשו בהדגשות ובשינויי קצב.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-pause-circle"></i> שתיקה ככלי</h3>
+                    <p>אל תפחדו משתיקות. הפסקות קצרות נותנות לקהל לעבד את המידע ומוסיפות דרמה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- להוסיף אחרי section.story-section -->
+    <section class="achievements-section">
+        <div class="achievements-container">
+            <h2>הישגים והסמכות</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>מרצה בכיר</h3>
+                    <p>במכללת ספרא</p>
+                    <div class="achievement-details">
+                        <span class="counter" data-target="100">0</span>
+                        <span>+</span>
+                        <p>בוגרי הקורס</p>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-users"></i>
+                    <h3>הדרכת קהלים</h3>
+                    <p>בני נוער, יזמים ומורים</p>
+                    <div class="achievement-details">
+                        <span class="counter" data-target="1000">0</span>
+                        <span>+</span>
+                        <p>משתתפים</p>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>ניסיון הוראה</h3>
+                    <p>פורמלי ובלתי פורמלי</p>
+                    <div class="achievement-details">
+                        <span class="counter" data-target="10">0</span>
+                        <span>+</span>
+                        <p>שנות ניסיון</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- להוסיף אחרי achievements-section -->
+    <section class="certificates-section">
+        <div class="container">
+            <h2>תעודות והסמכות</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <img src="https://i.ibb.co/kc0hyZk/20240929-145913.jpg" alt="תעודת הסמכה 1" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>מרצה בכיר</h3>
+                        <p>מכללת ספרא</p>
+                    </div>
+                </div>
+                <div class="certificate-card">
+                    <img src="https://i.ibb.co/SfNPMVV/v.png" alt="תעודת הסמכה 2" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>מנחה קבוצות</h3>
+                        <p>תעודת הסמכה</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>רוצים ללמוד עוד?</h2>
+                <p>הצטרפו להרצאה הקרובה שלי בנושא עמידה מול קהל</p>
+                <div class="cta-buttons">
+                    <a href="lecture.html" class="cta-button">
+                        <i class="fas fa-file-alt"></i>
+                        צפה בפלאייר ההרצאה
+                    </a>
+                    <a href="#contact-form" class="cta-button primary">
+                        <i class="fas fa-envelope"></i>
+                        צור קשר עכשיו
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tipsLeft = document.querySelector('.tips-container.left');
+            const tipsRight = document.querySelector('.tips-container.right');
+            const storySection = document.querySelector('.story-section');
+
+            window.addEventListener('scroll', function() {
+                const storySectionTop = storySection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                // כשהמשתמש מגיע לאזור הסיפור
+                if (storySectionTop <= windowHeight * 0.5) {
+                    tipsLeft.classList.add('show');
+                    tipsRight.classList.add('show');
+                } else {
+                    tipsLeft.classList.remove('show');
+                    tipsRight.classList.remove('show');
+                }
+            });
+        });
+
+        // להוסיף לסקריפט הקיים
+        function animateCounter(counter) {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / 200;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(counter), 1);
+            } else {
+                counter.innerText = target;
+            }
+        }
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => animateCounter(counter));
+                }
+            });
+        };
+
+        const achievementsSection = document.querySelector('.achievements-section');
+        const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
+        observer.observe(achievementsSection);
+    </script>
+</body>
+</html>

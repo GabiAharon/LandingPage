@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>גבי אהרון - עמידה מול קהל</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #FFD700;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <iframe id="video-background" 
+                src="https://www.youtube.com/embed/AzQ8X038bDQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playlist=AzQ8X038bDQ&vq=hd1080" 
+                frameborder="0" 
+                allowfullscreen
+                allow="autoplay; encrypted-media">
+        </iframe>
+    </div>
+
+    <div class="content">
+        <h1>גבי אהרון - עמידה מול קהל</h1>
+        <p>גלו את הכוח של תקשורת אפקטיבית ולמדו כיצד להשאיר רושם בלתי נשכח בכל הופעה מול קהל.</p>
+        <a href="#" class="cta-button">צור קשר</a>
+    </div>
+ <!-- סקציית הסיפור -->
+ <section class="story-section">
+    <div class="story-text">
+      <h2>הסיפור שלי</h2>
+      <p>כשהתחלתי לעבוד עם בני נוער בתכנית יזמות, הבנתי את הכוח העצום שיש לעמידה מול קהל. ראיתי איך הכלים שלימדתי שינו את חייהם של הצעירים, איך הם צברו ביטחון והתחילו להאמין בעצמם.</p>
+      <p>זה היה מדהים לראות את השינוי - מנערים ביישנים שפחדו לדבר, הם הפכו למנהיגים צעירים שמסוגלים להציג את הרעיונות שלהם בביטחון מול קהל.</p>
+    </div>
+    <div class="story-image">
+      תמונה תתווסף כאן
+    </div>
+  </section>
+    <script>
+        // Ensure the video covers the entire screen
+        function resizeVideo() {
+            var video = document.getElementById('video-background');
+            var aspectRatio = 16 / 9;
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            var windowRatio = windowWidth / windowHeight;
+
+            if (windowRatio < aspectRatio) {
+                video.style.width = (windowHeight * aspectRatio) + 'px';
+                video.style.height = windowHeight + 'px';
+            } else {
+                video.style.width = windowWidth + 'px';
+                video.style.height = (windowWidth / aspectRatio) + 'px';
+            }
+        }
+
+        window.addEventListener('load', resizeVideo);
+        window.addEventListener('resize', resizeVideo);
+    </script>
+</body>
+</html>
