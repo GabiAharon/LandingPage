@@ -1231,7 +1231,7 @@ body {
   
   .ai-section {
     max-width: 1200px; /* הרחבת הרוחב המקסימלי */
-    margin: 60px auto; /* הגדלת המרווח מלמעלה ומלמטה */
+    margin: 60px auto; /* ��גדלת המרווח מלמעלה ומלמטה */
     padding: 40px;
     background-color: rgba(255, 255, 255, 0.9); /* רקע לבן שקוף */
     border-radius: 20px;
