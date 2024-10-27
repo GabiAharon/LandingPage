@@ -714,115 +714,60 @@
         /* עדכון סגנון התפריט למובייל */
         @media (max-width: 768px) {
             nav {
-                padding: 10px 20px;
+                padding: 10px 0;
+                width: 100%;
             }
 
             nav ul {
                 display: flex;
+                flex-direction: row; /* וידוא שהכיוון הוא שורה */
                 justify-content: center;
                 align-items: center;
-                gap: 15px;
+                gap: 10px; /* הקטנת המרווח בין הפריטים */
+                width: 100%;
                 margin: 0;
                 padding: 0;
-                width: 100%;
             }
 
             nav ul li {
                 margin: 0;
+                flex-shrink: 1; /* מאפשר לפריטים להתכווץ */
             }
 
             nav ul li a {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row; /* סידור האייקון והטקסט בשורה */
                 align-items: center;
-                font-size: 0.8rem;
-                padding: 5px;
-                text-align: center;
+                font-size: 0.75rem; /* הקטנת גודל הטקסט */
+                padding: 5px 8px;
                 white-space: nowrap;
             }
 
             nav ul li a i {
-                font-size: 1.2rem;
-                margin-bottom: 3px;
+                font-size: 1rem;
+                margin-left: 4px; /* מרווח קטן בין האייקון לטקסט */
+                margin-bottom: 0;
             }
 
-            /* הסתרת הטקסט ותצוגת אייקונים בלבד במסכים קטנים מאוד */
-            @media (max-width: 380px) {
-                nav ul li a span {
-                    display: none;
-                }
-
-                nav ul li a i {
-                    font-size: 1.4rem;
-                    margin: 0;
-                }
-
-                nav ul {
-                    gap: 20px;
-                }
-            }
-
+            /* הסתרת הלוגו במובייל */
             .logo {
-                display: none; /* הסתרת הלוגו במובייל אם צריך יותר מקום */
+                display: none;
             }
         }
 
-        /* עדכון סגנון למובייל */
-        @media (max-width: 768px) {
-            /* התאמת הכותרת הראשית */
-            .main-title {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                color: white;
-                width: 100%;
-                z-index: 1;
-                padding: 0 20px;
+        /* התאמות נוספות למסכים קטנים מאוד */
+        @media (max-width: 380px) {
+            nav ul li a {
+                font-size: 0.7rem; /* הקטנה נוספת של הטקסט */
+                padding: 5px 6px;
             }
 
-            .main-title h1 {
-                font-size: 2rem;
-                margin-bottom: 20px;
-                font-family: "Rubik Dirt", system-ui;
-                color: #FFD700;
-            }
-
-            /* הזזת אינדיקטור הגלילה למעלה */
-            .scroll-indicator {
-                bottom: 20%;
-            }
-
-            /* התאמת מיקום הסיפור */
-            .story-section {
-                margin-top: 90vh; /* שינוי מ-100vh ל-90vh */
-            }
-
-            .story-container {
-                padding: 20px;
-                width: 100%;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .story-text {
-                width: 100%;
-                padding: 0 15px;
-                text-align: right;
-            }
-
-            /* תיקון יישור תפריט */
-            nav {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                padding: 10px 0;
+            nav ul li a i {
+                font-size: 0.9rem;
             }
 
             nav ul {
-                width: auto;
-                justify-content: center;
+                gap: 5px; /* הקטנת המרווח עוד יותר */
             }
         }
     </style>
@@ -1095,3 +1040,5 @@
     </script>
 </body>
 </html>
+
+
