@@ -626,6 +626,90 @@
                 height: 200px;
             }
         }
+
+        /* עיצוב חדש לטיפים במובייל בלבד */
+        @media (max-width: 768px) {
+            .tips-mobile-toggle {
+                display: block;
+                width: 90%;
+                margin: 20px auto;
+                padding: 15px;
+                background: rgba(255, 215, 0, 0.1);
+                border: 1px solid #FFD700;
+                border-radius: 10px;
+                color: #FFD700;
+                text-align: center;
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .tips-mobile-toggle i {
+                margin-left: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .tips-mobile-toggle.active i {
+                transform: rotate(180deg);
+            }
+
+            .tips-container {
+                position: static;
+                width: 90%;
+                margin: 0 auto;
+                transform: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                opacity: 0;
+            }
+
+            .tips-container.show {
+                max-height: 2000px;
+                opacity: 1;
+                margin: 20px auto;
+            }
+
+            .tips-container.left,
+            .tips-container.right {
+                left: auto;
+                right: auto;
+            }
+
+            .tip-card {
+                margin: 10px 0;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .story-container {
+                padding: 20px 0;
+            }
+
+            /* הסתרת הטיפים המקוריים במובייל */
+            .tips-container.left,
+            .tips-container.right {
+                display: none;
+            }
+
+            /* מיכל חדש לטיפים במובייל */
+            .tips-mobile-section {
+                display: block;
+                margin: 30px 0;
+                padding: 0 20px;
+            }
+
+            .tips-grid {
+                display: grid;
+                gap: 15px;
+            }
+        }
+
+        /* הסתרת אלמנטים של מובייל במסך רגיל */
+        .tips-mobile-section,
+        .tips-mobile-toggle {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -790,6 +874,44 @@
         </div>
     </section>
 
+    <!-- להוסיף אחרי story-text ולפני story-image -->
+    <div class="tips-mobile-section">
+        <button class="tips-mobile-toggle">
+            <i class="fas fa-chevron-down"></i>
+            טיפים לעמידה מול קהל
+        </button>
+        <div class="tips-grid">
+            <div class="tips-container mobile">
+                <!-- העתק של הטיפים מהצד השמאלי -->
+                <div class="tip-card">
+                    <h3><i class="fas fa-door-open"></i> שפת גוף פתוחה</h3>
+                    <p>שמרו על כתפיים פתוחות וידיים משוחררות. הימנעו מהצלבת ידיים - זה משדר פתיחות וביטחון.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-eye"></i> קשר עין</h3>
+                    <p>צרו קשר עין עם הקהל. סרקו את החדר באיטיות והתעכבו על אנשים שונים למספר שניות.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-wind"></i> נשימה נכונה</h3>
+                    <p>נשמו עמוק לפני ובמהלך ההרצאה. נשימה נכונה מפחיתה חרדה ומשפרת את איכות הדיבור.</p>
+                </div>
+                <!-- העתק של הטיפים מהצד הימני -->
+                <div class="tip-card">
+                    <h3><i class="fas fa-walking"></i> תנועה במרחב</h3>
+                    <p>נועו במרחב בטבעיות. תנועה מתונה על הבמה עוזרת לשמור על עניין ומעורבות הקהל.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-microphone-alt"></i> טון דיבור</h3>
+                    <p>שנו את טון הדיבור שלכם. הימנעו מדיבור מונוטוני - השתמשו בהדגשות ובשינויי קצב.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-pause-circle"></i> שתיקה ככלי</h3>
+                    <p>אל תפחדו משתיקות. הפסקות קצרות נותנות לקהל לעבד את המידע ומוסיפות דרמה.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tipsLeft = document.querySelector('.tips-container.left');
@@ -837,6 +959,18 @@
         const achievementsSection = document.querySelector('.achievements-section');
         const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
         observer.observe(achievementsSection);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tipsToggle = document.querySelector('.tips-mobile-toggle');
+            const tipsContainer = document.querySelector('.tips-container.mobile');
+
+            if (tipsToggle) {
+                tipsToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    tipsContainer.classList.toggle('show');
+                });
+            }
+        });
     </script>
 </body>
 </html>
