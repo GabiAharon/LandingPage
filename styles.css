@@ -24,23 +24,25 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 10px 20px;
     z-index: 1000;
-    border-bottom: 2px solid #bdc3c7;
+    display: flex;
+    justify-content: center; /* ממרכז את התפריט */
+    align-items: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   nav ul {
     display: flex;
-    list-style-type: none;
+    flex-direction: row; /* מוודא שהפריטים מסודרים בשורה */
+    justify-content: center;
+    align-items: center;
+    list-style: none;
     margin: 0;
     padding: 0;
-    gap: 1rem;
+    gap: 20px; /* מרווח בין הפריטים */
   }
   
   nav ul li {
@@ -48,18 +50,19 @@ body {
   }
   
   nav ul li a {
+    display: flex;
+    align-items: center;
     color: #2c3e50;
     text-decoration: none;
     font-weight: bold;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* מונע שבירת שורות */
   }
   
   nav ul li a i {
+    margin-left: 8px;
     font-size: 1.2rem;
   }
   
